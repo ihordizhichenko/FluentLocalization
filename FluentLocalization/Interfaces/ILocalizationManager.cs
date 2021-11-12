@@ -8,5 +8,6 @@ namespace FluentLocalization.Interfaces
 {
     public interface ILocalizationManager
     {
+
     }
 }
