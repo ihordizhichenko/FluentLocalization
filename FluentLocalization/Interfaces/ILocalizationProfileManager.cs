@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FluentLocalization.Interfaces
+﻿namespace FluentLocalization.Interfaces
 {
     public interface ILocalizationProfileManager
     {
+        IReadOnlyCollection<ILocalizationProfileBase> Profiles { get; }
         void AddProfile(ILocalizationProfileBase profile);
+        IEntityLocalizationProfile<T>? GetProfile<T>() where T : class;
     }
 }

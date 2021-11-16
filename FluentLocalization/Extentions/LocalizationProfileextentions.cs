@@ -10,9 +10,9 @@ namespace FluentLocalization.Extentions
 {
     public static class LocalizationProfileextentions
     {
-        public static LocalizationProfile<TEntity> RegisterEntity
+        public static EntityLocalizationProfile<TEntity> RegisterEntity
 
-        public static void RegisterProperty<TEntity, TProperty>(this LocalizationProfile<TEntity> localizationProfile, Expression<Func<TEntity, TProperty>> property, string propertyId) where TEntity : class
+        public static void RegisterProperty<TEntity, TProperty>(this EntityLocalizationProfile<TEntity> localizationProfile, Expression<Func<TEntity, TProperty>> property, string propertyId) where TEntity : class
         {
 
         }

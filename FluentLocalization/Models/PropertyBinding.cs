@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentLocalization.Interfaces
+namespace FluentLocalization.Models
 {
-    internal class IStringLocalizationStorage
-    {
-    }
+    public record PropertyBinding(string PropertyName, string PropertyId);
+
 }

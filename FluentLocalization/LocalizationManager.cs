@@ -12,31 +12,55 @@ namespace FluentLocalization
     public class LocalizationManager : ILocalizationManager
     {
         private readonly IEntityLocalizationStorage _entityLocalizationStorage;
-        
+        private readonly ILocalizationProfileManager _localizationProfileManager;
 
-        public LocalizationManager(IEntityLocalizationStorage entityLocalizationStorage)
+        public LocalizationManager(
+            IEntityLocalizationStorage entityLocalizationStorage,
+            ILocalizationProfileManager localizationProfileManager)
         {
             _entityLocalizationStorage = entityLocalizationStorage;
+            _localizationProfileManager = localizationProfileManager;
         }
 
         public Task<string> GetLocalization(string key)
         {
-            return Task<string>.FromResult("");
+            throw new NotImplementedException();
         }
 
-        public Task<T> GetLocalization<T>(T entity) where T : class
+        public async Task<T> GetEntityLocalization<T>(T entity, string language) where T : class
         {
-            _entityLocalizationStorage.GetEntityLocalizationAsync()
+            var profile = _localizationProfileManager.GetProfile<T>();
+            if(profile == null)
+            {
+                return null;
+            }
+
+            var entityType = entity.GetType();
+
+            var recordIdValue = entityType.GetProperty(profile.RecordId).GetValue(entity, null).ToString();
+            var localizedProperties = await _entityLocalizationStorage.GetEntityLocalizationAsync(profile.EntityId, recordIdValue, language);
+
+            foreach(var localizedProperty in localizedProperties)
+            {
+                var propertyName = profile.Properties.FirstOrDefault(x => x.PropertyId == localizedProperty.PropertyId).PropertyName;
+                entityType.GetProperty(propertyName).SetValue(entity, localizedProperty, null);
+            }
+
+            return entity;
         }
 
-        public Task AddUpdateLocalizationValueAsync<TEntity, TProperty>(Expression<Func<TEntity, TProperty>> property, string value, string language)
+        public async Task AddUpdateLocalizationValueAsync<TEntity, TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> property, string value, string language) where TEntity : class
         {
             var propertyExpression = (MemberExpression)property.Body;
             string propertyName = propertyExpression.Member.Name;
-            string typeName = typeof(TEntity).FullName;
+
+            var profile = _localizationProfileManager.GetProfile<TEntity>();
+            var propertyId = profile.Properties.FirstOrDefault(x => x.PropertyName == propertyName).PropertyId;
+            var entityType = entity.GetType();
+            var recordIdValue = entityType.GetProperty(profile.RecordId).GetValue(entity, null).ToString();
 
 
-            return Task.CompletedTask;
+            await _entityLocalizationStorage.SetPropertyLocalizationAsync(profile.EntityId, propertyId, recordIdValue, value, language);
         }
     }
 }

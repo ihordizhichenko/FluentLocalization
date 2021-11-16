@@ -1,27 +1,30 @@
 ﻿using FluentLocalization.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FluentLocalization
 {
     public class LocalizationProfileManager : ILocalizationProfileManager
     {
-        public List<ILocalizationProfileBase> Profiles { get; } = new();
+        private List<ILocalizationProfileBase> _profiles = new();
+
+        public IReadOnlyCollection<ILocalizationProfileBase> Profiles 
+        { 
+            get
+            {
+                return _profiles.AsReadOnly();
+            }
+        }
 
         public void AddProfile(ILocalizationProfileBase profile)
         {
-            Profiles.Add(profile);
+            _profiles.Add(profile);
         }
 
-        public List<T> GetProfiles<T>() where T : ILocalizationProfileBase
+        public IEntityLocalizationProfile<T>? GetProfile<T>() where T : class
         {
             return Profiles
-                .Where(x => x is T)
-                .Select(x => (T)x)
-                .ToList();
+                .Where(x => x is IEntityLocalizationProfile<T>)
+                .Select(x => (IEntityLocalizationProfile<T>)x)
+                .FirstOrDefault();
         }
     }
 }
