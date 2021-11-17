@@ -49,7 +49,9 @@ namespace FluentLocalization
             return entity;
         }
 
-        public async Task AddUpdateLocalizationValueAsync<TEntity, TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> property, string value, string language) where TEntity : class
+        public async Task SetEntityLocalization<TEntity>(TEntity entity, List<(Expression<Func<TEntity, TPropery>>)>)
+
+        public async Task SetPropertyLocalization<TEntity, TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> property, string value, string language) where TEntity : class
         {
             var propertyExpression = (MemberExpression)property.Body;
             string propertyName = propertyExpression.Member.Name;
@@ -58,7 +60,6 @@ namespace FluentLocalization
             var propertyId = profile.Properties.FirstOrDefault(x => x.PropertyName == propertyName).PropertyId;
             var entityType = entity.GetType();
             var recordIdValue = entityType.GetProperty(profile.RecordId).GetValue(entity, null).ToString();
-
 
             await _entityLocalizationStorage.SetPropertyLocalizationAsync(profile.EntityId, propertyId, recordIdValue, value, language);
         }
