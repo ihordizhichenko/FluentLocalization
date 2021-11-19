@@ -1,11 +1,6 @@
 ﻿using FluentLocalization.Interfaces;
 using FluentLocalization.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FluentLocalization
 {
@@ -49,7 +44,14 @@ namespace FluentLocalization
             return entity;
         }
 
-        public async Task SetEntityLocalization<TEntity>(TEntity entity, List<(Expression<Func<TEntity, TPropery>>)>)
+        public async Task SetEntityLocalization<TEntity>(TEntity entity, EntityProperties<TEntity> entityPproperties, string language) where TEntity : class
+        {
+            var profile = _localizationProfileManager.GetProfile<TEntity>();
+            var entityType = entity.GetType();
+            var recordIdValue = entityType.GetProperty(profile.RecordId).GetValue(entity, null).ToString();
+
+            await _entityLocalizationStorage.SetEntityLocalizationAsync(profile.EntityId, entityPproperties.PropertyValues.ToList(), recordIdValue, language);
+        }
 
         public async Task SetPropertyLocalization<TEntity, TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> property, string value, string language) where TEntity : class
         {
