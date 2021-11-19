@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentLocalization", "FluentLocalization\FluentLocalization.csproj", "{B633F035-44C7-4BA8-B282-CE93108F5C59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentLocalization", "FluentLocalization\FluentLocalization.csproj", "{B633F035-44C7-4BA8-B282-CE93108F5C59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentLocalization.EfCore", "FluentLocalization.EfCore\FluentLocalization.EfCore.csproj", "{6D2BB993-E20B-4E19-98FC-06B9D835F449}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentLocalization.EfCore", "FluentLocalization.EfCore\FluentLocalization.EfCore.csproj", "{6D2BB993-E20B-4E19-98FC-06B9D835F449}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{07161D5C-CD10-4FBE-8F1D-CC4632F21A55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentLocalization.WebApi", "Examples\FluentLocalization.WebApi\FluentLocalization.WebApi.csproj", "{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{6D2BB993-E20B-4E19-98FC-06B9D835F449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D2BB993-E20B-4E19-98FC-06B9D835F449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D2BB993-E20B-4E19-98FC-06B9D835F449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C} = {07161D5C-CD10-4FBE-8F1D-CC4632F21A55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0057960-411A-44FA-8F2E-61606DD6F506}
