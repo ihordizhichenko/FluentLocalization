@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentLocalization.EfCore",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{07161D5C-CD10-4FBE-8F1D-CC4632F21A55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentLocalization.WebApi", "Examples\FluentLocalization.WebApi\FluentLocalization.WebApi.csproj", "{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentLocalization.WebApi", "Examples\FluentLocalization.WebApi\FluentLocalization.WebApi.csproj", "{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{23921C33-BEDA-4D75-90F5-B9D75CC94EB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ABC600F-457E-4D41-8B0C-9A8ABDEA062C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23921C33-BEDA-4D75-90F5-B9D75CC94EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23921C33-BEDA-4D75-90F5-B9D75CC94EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23921C33-BEDA-4D75-90F5-B9D75CC94EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23921C33-BEDA-4D75-90F5-B9D75CC94EB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

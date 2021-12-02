@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  fluentlocalization.webapi:
+    image: ${DOCKER_REGISTRY-}fluentlocalizationwebapi
+    build:
+      context: .
+      dockerfile: Examples/FluentLocalization.WebApi/Dockerfile
+    container_name: fluentlocalization.webapi
+    depends_on:
+      - fluentlocalization-postgres
+
+  fluentlocalization-postgres:
+    container_name: fluentlocalization-postgres
+    image: "postgres:12"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+      PGDATA: "/data/postgres"
+    volumes:
+      - postgres_data_volume:/data/postgres
+    ports:
+      - "5439:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data_volume:
